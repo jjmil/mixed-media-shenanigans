@@ -1,0 +1,225 @@
+[gd_scene load_steps=16 format=3 uid="uid://db8218xvnab74"]
+
+[ext_resource type="PackedScene" uid="uid://dokqmxs4040l6" path="res://scenes/plat_player.tscn" id="1_g2gbe"]
+[ext_resource type="PackedScene" uid="uid://dj6q3iy77b2ij" path="res://scenes/plat_enem.tscn" id="2_ofq7b"]
+[ext_resource type="PackedScene" uid="uid://lrq6bugsgwst" path="res://scenes/trans_area.tscn" id="3_7euwx"]
+
+[sub_resource type="Gradient" id="Gradient_g2gbe"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ofq7b"]
+gradient = SubResource("Gradient_g2gbe")
+width = 256
+height = 176
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2gbe"]
+size = Vector2(2240, 176)
+
+[sub_resource type="Gradient" id="Gradient_ofq7b"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7euwx"]
+gradient = SubResource("Gradient_ofq7b")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wkeu"]
+size = Vector2(66, 368)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h71s2"]
+size = Vector2(66, 1576)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7euwx"]
+size = Vector2(66, 1288)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ofq7b"]
+size = Vector2(66, 832)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jk644"]
+size = Vector2(64.999985, 280)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0pu0"]
+size = Vector2(20, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sqe1v"]
+size = Vector2(122, 256)
+
+[node name="PlatformerMain" type="Node2D"]
+
+[node name="PlatPlayer" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_g2gbe")]
+camera = NodePath("Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="PlatPlayer"]
+zoom = Vector2(0.75, 0.75)
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="floor" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 152)
+collision_layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/floor"]
+position = Vector2(544, 0)
+scale = Vector2(8.75, 1)
+texture = SubResource("GradientTexture2D_ofq7b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/floor"]
+position = Vector2(544, 0)
+shape = SubResource("RectangleShape2D_g2gbe")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+position = Vector2(56, -696)
+rotation = 1.5707964
+collision_layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D"]
+position = Vector2(0, -7.6293945e-06)
+scale = Vector2(1, 5.75)
+texture = SubResource("GradientTexture2D_7euwx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+shape = SubResource("RectangleShape2D_1wkeu")
+
+[node name="StaticBody2D8" type="StaticBody2D" parent="Walls"]
+position = Vector2(872, -808)
+rotation = 1.5707964
+collision_layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D8"]
+position = Vector2(0, -7.6293945e-06)
+scale = Vector2(1, 5.75)
+texture = SubResource("GradientTexture2D_7euwx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D8"]
+shape = SubResource("RectangleShape2D_1wkeu")
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="Walls"]
+position = Vector2(1784, -800)
+rotation = 1.5707964
+collision_layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D7"]
+position = Vector2(0, -603.61255)
+scale = Vector2(1, 24.612892)
+texture = SubResource("GradientTexture2D_7euwx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D7"]
+position = Vector2(-0.00024414063, -604)
+shape = SubResource("RectangleShape2D_h71s2")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Walls"]
+position = Vector2(-544, -120)
+collision_layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D2"]
+position = Vector2(0, -460.00006)
+scale = Vector2(1, 20.125)
+texture = SubResource("GradientTexture2D_7euwx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D2"]
+position = Vector2(0, -460)
+shape = SubResource("RectangleShape2D_7euwx")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Walls"]
+position = Vector2(1632, -120)
+collision_layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D3"]
+position = Vector2(0, -231.99998)
+scale = Vector2(1, 13)
+texture = SubResource("GradientTexture2D_7euwx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D3"]
+position = Vector2(0, -232)
+shape = SubResource("RectangleShape2D_ofq7b")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Walls"]
+position = Vector2(504, -96)
+rotation = 1.5707964
+collision_layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D4"]
+position = Vector2(0, 44.04471)
+scale = Vector2(1, 4.3736033)
+texture = SubResource("GradientTexture2D_7euwx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D4"]
+position = Vector2(0, 44)
+shape = SubResource("RectangleShape2D_jk644")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Walls"]
+position = Vector2(952, -232)
+rotation = 1.5707964
+collision_layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D5"]
+position = Vector2(0, 44.04471)
+scale = Vector2(1, 4.3736033)
+texture = SubResource("GradientTexture2D_7euwx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D5"]
+position = Vector2(0.5, 44)
+shape = SubResource("RectangleShape2D_jk644")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="Walls"]
+position = Vector2(576, -464)
+rotation = 1.5707964
+collision_layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D6"]
+position = Vector2(0, 44.04471)
+scale = Vector2(1, 4.3736033)
+texture = SubResource("GradientTexture2D_7euwx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D6"]
+position = Vector2(0, 44)
+shape = SubResource("RectangleShape2D_jk644")
+
+[node name="EnemCollider" type="StaticBody2D" parent="Walls"]
+position = Vector2(1056, -272)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/EnemCollider"]
+position = Vector2(0, -19)
+shape = SubResource("RectangleShape2D_l0pu0")
+
+[node name="EnemCollider2" type="StaticBody2D" parent="Walls"]
+position = Vector2(760, -272)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/EnemCollider2"]
+position = Vector2(0, -19)
+shape = SubResource("RectangleShape2D_l0pu0")
+
+[node name="EnemCollider3" type="StaticBody2D" parent="Walls"]
+position = Vector2(256, -744)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/EnemCollider3"]
+position = Vector2(0, -19)
+shape = SubResource("RectangleShape2D_l0pu0")
+
+[node name="EnemCollider4" type="StaticBody2D" parent="Walls"]
+position = Vector2(-136, -744)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/EnemCollider4"]
+position = Vector2(0, -19)
+shape = SubResource("RectangleShape2D_l0pu0")
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="EnemSlime" parent="Enemies" instance=ExtResource("2_ofq7b")]
+position = Vector2(864, 64)
+init_state = "Move"
+
+[node name="EnemSlime2" parent="Enemies" instance=ExtResource("2_ofq7b")]
+position = Vector2(840, -264)
+init_state = "Move"
+
+[node name="EnemSlime3" parent="Enemies" instance=ExtResource("2_ofq7b")]
+position = Vector2(-72, -728)
+init_state = "Move"
+
+[node name="TransArea" parent="." instance=ExtResource("3_7euwx")]
+position = Vector2(3064, -904)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransArea"]
+position = Vector2(51, -56)
+shape = SubResource("RectangleShape2D_sqe1v")

@@ -1,0 +1,109 @@
+[gd_scene load_steps=13 format=3 uid="uid://dj6q3iy77b2ij"]
+
+[ext_resource type="Script" uid="uid://blqtyb32gygp" path="res://scripts/plat enem state machine/plat_enem.gd" id="1_2g1cc"]
+[ext_resource type="Texture2D" uid="uid://bjt8uldax8ec4" path="res://assets/sprites/placeholder/beta_plat_enem_sheet.png" id="1_3xeth"]
+[ext_resource type="Script" uid="uid://cwdsjiqiyoi7t" path="res://scripts/plat enem state machine/move.gd" id="3_f7kyk"]
+[ext_resource type="Script" uid="uid://co0032dava7o3" path="res://scripts/plat enem state machine/death.gd" id="4_8gwpb"]
+[ext_resource type="Script" uid="uid://c8vgg4x8pr0d4" path="res://scripts/plat enem state machine/jeremy.gd" id="5_caqrf"]
+[ext_resource type="Script" uid="uid://01q1452s0pje" path="res://scripts/plat enem state machine/idle.gd" id="6_l28up"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jwc2s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enooo"]
+atlas = ExtResource("1_3xeth")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qw04g"]
+atlas = ExtResource("1_3xeth")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6by2e"]
+atlas = ExtResource("1_3xeth")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qw04g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enooo")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qw04g")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6by2e")
+}],
+"loop": true,
+"name": &"move",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qw04g"]
+size = Vector2(64, 64)
+
+[node name="PlatEnem" type="StaticBody2D" groups=["enemy", "hittable"]]
+z_index = 6
+collision_layer = 6
+collision_mask = 2
+script = ExtResource("1_2g1cc")
+set_speed = 200
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_jwc2s")
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_qw04g")
+animation = &"move"
+autoplay = "move"
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(0, -32)
+scale = Vector2(1, 6)
+target_position = Vector2(48, 0)
+collision_mask = 4
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(0, -32)
+scale = Vector2(1, 6)
+target_position = Vector2(-48, 0)
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_qw04g")
+
+[node name="Move" type="Node" parent="."]
+script = ExtResource("3_f7kyk")
+
+[node name="Death" type="Node" parent="."]
+script = ExtResource("4_8gwpb")
+
+[node name="Jeremy" type="Node" parent="."]
+script = ExtResource("5_caqrf")
+
+[node name="Idle" type="Node" parent="."]
+script = ExtResource("6_l28up")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_qw04g")
+
+[node name="FlashTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="Jeremy" method="_on_animation_finished"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_entered"]
+[connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]
