@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://dvsl7h56j0kvt"]
+
+[ext_resource type="Script" uid="uid://cigq8th364gou" path="res://scripts/level.gd" id="1_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://byh2ike42k75x" path="res://scenes/player.tscn" id="2_w8frs"]
+[ext_resource type="Script" uid="uid://cesg4tecj43aw" path="res://scripts/enemy_spawner.gd" id="3_w8frs"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_0wfyh"]
+b = Vector2(256, -1.1190115e-05)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_sugp2"]
+b = Vector2(-256, -2.238023e-05)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_jyhfs"]
+a = Vector2(-4.476046e-05, 256)
+b = Vector2(255.99995, 256.00003)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_tbgi4"]
+a = Vector2(3.0527694e-06, 256)
+b = Vector2(-256, 256)
+
+[node name="Level" type="Node" unique_id=741583077]
+script = ExtResource("1_w7c3h")
+
+[node name="CountLabel" type="Label" parent="." unique_id=1786254781]
+visible = false
+offset_right = 256.0
+offset_bottom = 256.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1622130676]
+offset_top = 232.0
+offset_right = 48.0
+offset_bottom = 255.0
+text = "Score:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player" parent="." unique_id=285578149 instance=ExtResource("2_w8frs")]
+
+[node name="Border" type="StaticBody2D" parent="." unique_id=1758659775]
+collision_mask = 0
+
+[node name="CollisionShape1" type="CollisionShape2D" parent="Border" unique_id=1077750653]
+rotation = 1.5707964
+shape = SubResource("SegmentShape2D_0wfyh")
+one_way_collision = true
+
+[node name="CollisionShape2" type="CollisionShape2D" parent="Border" unique_id=347813211]
+rotation = -3.1415927
+shape = SubResource("SegmentShape2D_sugp2")
+one_way_collision = true
+
+[node name="CollisionShape3" type="CollisionShape2D" parent="Border" unique_id=1802740979]
+rotation = -6.2831855
+shape = SubResource("SegmentShape2D_jyhfs")
+one_way_collision = true
+
+[node name="CollisionShape4" type="CollisionShape2D" parent="Border" unique_id=1764698194]
+rotation = 4.712389
+shape = SubResource("SegmentShape2D_tbgi4")
+one_way_collision = true
+
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=2086100634]
+script = ExtResource("3_w8frs")
+metadata/_custom_type_script = "uid://cesg4tecj43aw"
+
+[node name="Timer" type="Timer" parent="." unique_id=915938623]
+wait_time = 5.0
+autostart = true
+
+[connection signal="has_died" from="Player" to="." method="_on_player_has_died"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

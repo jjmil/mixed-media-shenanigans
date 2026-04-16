@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://xu6f2bpnmd8l"]
+
+[ext_resource type="Script" uid="uid://bt7mfp3n1s5rt" path="res://scripts/line_enemy.gd" id="1_gq87g"]
+[ext_resource type="Texture2D" uid="uid://56qucq8rwkh6" path="res://icon.svg" id="2_d6p01"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d6p01"]
+radius = 8.0
+
+[node name="LineEnemy" type="Node2D"]
+script = ExtResource("1_gq87g")
+metadata/_custom_type_script = "uid://bt7mfp3n1s5rt"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2.3841858e-07, -2.3841858e-07)
+scale = Vector2(0.12499999, 0.12499999)
+texture = ExtResource("2_d6p01")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_d6p01")
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_shoot"]

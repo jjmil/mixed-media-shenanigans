@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://lsjyjmv2f0kp"]
+
+[ext_resource type="Script" uid="uid://xesy6h7viq3o" path="res://scripts/arc_enemy.gd" id="1_mcjpn"]
+[ext_resource type="Texture2D" uid="uid://56qucq8rwkh6" path="res://icon.svg" id="2_6dxya"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mcjpn"]
+radius = 8.0
+
+[node name="ArcEnemy" type="Node2D"]
+script = ExtResource("1_mcjpn")
+metadata/_custom_type_script = "uid://xesy6h7viq3o"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2.3841858e-07, -2.3841858e-07)
+scale = Vector2(0.12499999, 0.12499999)
+texture = ExtResource("2_6dxya")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_mcjpn")
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_shoot"]

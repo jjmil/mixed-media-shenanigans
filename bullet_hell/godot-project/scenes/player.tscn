@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://byh2ike42k75x"]
+
+[ext_resource type="Script" uid="uid://c08ylg3jklux5" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="PackedScene" uid="uid://csjbos7xvfmwd" path="res://scenes/player_node.tscn" id="2_qhqgy"]
+
+[node name="Player" type="Node" unique_id=805226106]
+script = ExtResource("1_g2els")
+
+[node name="PlayerNodeA" parent="." unique_id=525062661 instance=ExtResource("2_qhqgy")]
+position = Vector2(64, 192)
+id = "A"
+
+[connection signal="has_died" from="PlayerNodeA" to="." method="_on_player_node_has_died"]
