@@ -13,7 +13,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_1bpbq")
 plat_button = NodePath("Panel/VBoxContainer/PlatButton")
-shmup_button = NodePath("Panel/VBoxContainer/ShmupButton")
+shmup_button = NodePath("Panel/VBoxContainer/MazeButton")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -58,10 +58,10 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Plathforker"
 
-[node name="ShmupButton" type="Button" parent="Panel/VBoxContainer"]
+[node name="MazeButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Shmulp"
+text = "Maze?!?!?!?!?"
 
 [connection signal="pressed" from="Panel/VBoxContainer/PlatButton" to="." method="_on_plat_button_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/ShmupButton" to="." method="_on_shmup_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/MazeButton" to="." method="_on_shmup_button_pressed"]

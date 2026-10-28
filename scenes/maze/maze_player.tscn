@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://df3cr0bnc0h86"]
+
+[ext_resource type="Script" uid="uid://bd0ueb8pw6e4l" path="res://scripts/maze_player.gd" id="1_6o7lt"]
+[ext_resource type="Texture2D" uid="uid://cdvmavyiytj5c" path="res://assets/sprites/placeholder/beta_plat_player_sheet.png" id="1_tvpeq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mykwm"]
+atlas = ExtResource("1_tvpeq")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0j7d"]
+atlas = ExtResource("1_tvpeq")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88u20"]
+atlas = ExtResource("1_tvpeq")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6o7lt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mykwm")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0j7d")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88u20")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6o7lt"]
+size = Vector2(64, 128)
+
+[node name="MazePlayer" type="CharacterBody2D" node_paths=PackedStringArray("sprite") groups=["player"]]
+script = ExtResource("1_6o7lt")
+sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6o7lt")
+animation = &"run"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6o7lt")

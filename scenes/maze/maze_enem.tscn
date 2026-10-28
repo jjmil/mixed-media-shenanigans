@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://clfsfwi0rvk32"]
+
+[ext_resource type="Script" uid="uid://mewduorlbq0y" path="res://scripts/maze_enem.gd" id="1_bxhsv"]
+[ext_resource type="Texture2D" uid="uid://bjt8uldax8ec4" path="res://assets/sprites/placeholder/beta_plat_enem_sheet.png" id="2_etpbu"]
+[ext_resource type="Texture2D" uid="uid://q35yhitqdwy0" path="res://assets/sprites/placeholder/beta_plat_enem.png" id="3_gdg4y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8s8t"]
+atlas = ExtResource("2_etpbu")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cujgs"]
+atlas = ExtResource("3_gdg4y")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bxhsv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8s8t")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cujgs")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cujgs")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_etpbu"]
+size = Vector2(64, 64)
+
+[node name="MazeEnem" type="CharacterBody2D"]
+script = ExtResource("1_bxhsv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bxhsv")
+animation = &"idle"
+
+[node name="EnemHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemHitbox"]
+shape = SubResource("RectangleShape2D_etpbu")
+
+[node name="RayCastDown" type="RayCast2D" parent="."]
+target_position = Vector2(0, 24)
+
+[node name="RayCastUp" type="RayCast2D" parent="."]
+target_position = Vector2(0, -24)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-24, 0)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+target_position = Vector2(24, 0)
+
+[connection signal="body_entered" from="EnemHitbox" to="." method="_on_enem_hitbox_body_entered"]

@@ -15,6 +15,10 @@ run/main_scene="uid://c0e2exmkik55e"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[global_group]
+
+player="Group for player colliders"
+
 [input]
 
 input_up={

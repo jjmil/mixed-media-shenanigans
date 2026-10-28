@@ -19,4 +19,4 @@ func _on_plat_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main scenes/platformer_main.tscn")
 
 func _on_shmup_button_pressed() -> void:
-	pass
+	get_tree().change_scene_to_file("res://scenes/main scenes/maze_main.tscn")

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bleda0p3yfllq"]
+
+[ext_resource type="PackedScene" uid="uid://df3cr0bnc0h86" path="res://scenes/maze/maze_player.tscn" id="1_b7pxd"]
+[ext_resource type="PackedScene" uid="uid://clfsfwi0rvk32" path="res://scenes/maze/maze_enem.tscn" id="2_lhndq"]
+
+[node name="MazeMain" type="Node2D"]
+
+[node name="MazePlayer" parent="." instance=ExtResource("1_b7pxd")]
+
+[node name="Camera2D" type="Camera2D" parent="MazePlayer"]
+
+[node name="MazeEnem" parent="." instance=ExtResource("2_lhndq")]
+position = Vector2(-64, -288)

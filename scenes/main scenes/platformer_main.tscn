@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://db8218xvnab74"]
 
-[ext_resource type="PackedScene" uid="uid://dokqmxs4040l6" path="res://scenes/plat_player.tscn" id="1_g2gbe"]
-[ext_resource type="PackedScene" uid="uid://dj6q3iy77b2ij" path="res://scenes/plat_enem.tscn" id="2_ofq7b"]
+[ext_resource type="PackedScene" uid="uid://dokqmxs4040l6" path="res://scenes/platformer/plat_player.tscn" id="1_g2gbe"]
+[ext_resource type="PackedScene" uid="uid://dj6q3iy77b2ij" path="res://scenes/platformer/plat_enem.tscn" id="2_ofq7b"]
 [ext_resource type="PackedScene" uid="uid://lrq6bugsgwst" path="res://scenes/trans_area.tscn" id="3_7euwx"]
 
 [sub_resource type="Gradient" id="Gradient_g2gbe"]
