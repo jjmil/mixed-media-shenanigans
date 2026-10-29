@@ -1,7 +1,50 @@
-[gd_scene load_steps=3 format=3 uid="uid://bleda0p3yfllq"]
+[gd_scene load_steps=18 format=3 uid="uid://bleda0p3yfllq"]
 
 [ext_resource type="PackedScene" uid="uid://df3cr0bnc0h86" path="res://scenes/maze/maze_player.tscn" id="1_b7pxd"]
 [ext_resource type="PackedScene" uid="uid://clfsfwi0rvk32" path="res://scenes/maze/maze_enem.tscn" id="2_lhndq"]
+[ext_resource type="PackedScene" uid="uid://lrq6bugsgwst" path="res://scenes/trans_area.tscn" id="3_0kaxq"]
+
+[sub_resource type="Gradient" id="Gradient_g2gbe"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lhndq"]
+gradient = SubResource("Gradient_g2gbe")
+width = 256
+height = 176
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0kaxq"]
+size = Vector2(1152, 176)
+
+[sub_resource type="Gradient" id="Gradient_ofq7b"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_inxmx"]
+gradient = SubResource("Gradient_ofq7b")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dujx5"]
+size = Vector2(66, 368)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d68cl"]
+size = Vector2(66, 1984)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v2x7u"]
+size = Vector2(66, 1072)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_57hr5"]
+size = Vector2(66, 832)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qm72"]
+size = Vector2(64.999985, 280)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhndq"]
+size = Vector2(64.999985, 344)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_inxmx"]
+size = Vector2(64.999985, 288.00006)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d8u6f"]
+size = Vector2(34, 424)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r20mu"]
+size = Vector2(368, 408)
 
 [node name="MazeMain" type="Node2D"]
 
@@ -10,4 +53,202 @@
 [node name="Camera2D" type="Camera2D" parent="MazePlayer"]
 
 [node name="MazeEnem" parent="." instance=ExtResource("2_lhndq")]
-position = Vector2(-64, -288)
+position = Vector2(-104, -352)
+x_direction = 1
+
+[node name="MazeEnem3" parent="." instance=ExtResource("2_lhndq")]
+position = Vector2(864, -1096)
+speed = 100.0
+x_direction = 1
+y_direction = -1
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="floor" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 152)
+collision_layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/floor"]
+position = Vector2(6.1035156e-05, 0)
+scale = Vector2(4.5000005, 1)
+texture = SubResource("GradientTexture2D_lhndq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/floor"]
+shape = SubResource("RectangleShape2D_0kaxq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+position = Vector2(32, -272)
+rotation = 1.5707964
+collision_layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D"]
+position = Vector2(0, -7.6293945e-06)
+scale = Vector2(1, 5.75)
+texture = SubResource("GradientTexture2D_inxmx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+shape = SubResource("RectangleShape2D_dujx5")
+
+[node name="StaticBody2D8" type="StaticBody2D" parent="Walls"]
+position = Vector2(248, -424)
+collision_layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D8"]
+position = Vector2(0, -7.6293945e-06)
+scale = Vector2(1, 5.75)
+texture = SubResource("GradientTexture2D_inxmx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D8"]
+shape = SubResource("RectangleShape2D_dujx5")
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="Walls"]
+position = Vector2(-392, -1256)
+rotation = 1.5707964
+collision_layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D7"]
+position = Vector2(0, -807.0613)
+scale = Vector2(1, 30.970665)
+texture = SubResource("GradientTexture2D_inxmx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D7"]
+position = Vector2(-0.00024414063, -808)
+shape = SubResource("RectangleShape2D_d68cl")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Walls"]
+position = Vector2(-544, -120)
+collision_layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D2"]
+position = Vector2(0, -352.00003)
+scale = Vector2(1, 16.749998)
+texture = SubResource("GradientTexture2D_inxmx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D2"]
+position = Vector2(0, -352)
+shape = SubResource("RectangleShape2D_v2x7u")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Walls"]
+position = Vector2(600, 56)
+collision_layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D3"]
+position = Vector2(0, -231.99998)
+scale = Vector2(1, 13)
+texture = SubResource("GradientTexture2D_inxmx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D3"]
+position = Vector2(0, -232)
+shape = SubResource("RectangleShape2D_57hr5")
+
+[node name="StaticBody2D11" type="StaticBody2D" parent="Walls"]
+position = Vector2(752, -896)
+rotation = 1.5707964
+collision_layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D11"]
+position = Vector2(0, -231.99998)
+scale = Vector2(1, 13)
+texture = SubResource("GradientTexture2D_inxmx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D11"]
+position = Vector2(0, -232)
+shape = SubResource("RectangleShape2D_57hr5")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Walls"]
+position = Vector2(-328, -680)
+rotation = 1.5707964
+collision_layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D4"]
+position = Vector2(0, 44.04471)
+scale = Vector2(1, 4.3736033)
+texture = SubResource("GradientTexture2D_inxmx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D4"]
+position = Vector2(0, 44)
+shape = SubResource("RectangleShape2D_3qm72")
+
+[node name="StaticBody2D9" type="StaticBody2D" parent="Walls"]
+position = Vector2(-96, -680)
+rotation = 1.5707964
+collision_layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D9"]
+scale = Vector2(1, 4.3736033)
+texture = SubResource("GradientTexture2D_inxmx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D9"]
+shape = SubResource("RectangleShape2D_3qm72")
+
+[node name="StaticBody2D12" type="StaticBody2D" parent="Walls"]
+position = Vector2(600, -728)
+collision_layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D12"]
+scale = Vector2(1, 4.3736033)
+texture = SubResource("GradientTexture2D_inxmx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D12"]
+shape = SubResource("RectangleShape2D_3qm72")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Walls"]
+position = Vector2(-328, -976)
+rotation = 1.5707964
+collision_layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D5"]
+position = Vector2(0, 44.04471)
+scale = Vector2(1, 4.3736033)
+texture = SubResource("GradientTexture2D_inxmx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D5"]
+position = Vector2(0.5, 44)
+shape = SubResource("RectangleShape2D_3qm72")
+
+[node name="StaticBody2D10" type="StaticBody2D" parent="Walls"]
+position = Vector2(-608, -1192)
+collision_layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D10"]
+position = Vector2(0, 76.0447)
+scale = Vector2(1, 5.3736033)
+texture = SubResource("GradientTexture2D_inxmx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D10"]
+position = Vector2(0.5, 76)
+shape = SubResource("RectangleShape2D_lhndq")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="Walls"]
+position = Vector2(464, -576)
+rotation = 1.5707964
+collision_layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D6"]
+position = Vector2(0, 40.477425)
+scale = Vector2(1, 4.4850807)
+texture = SubResource("GradientTexture2D_inxmx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D6"]
+position = Vector2(0, 40)
+shape = SubResource("RectangleShape2D_inxmx")
+
+[node name="EnemCollider2" type="StaticBody2D" parent="Walls"]
+position = Vector2(1424, -1104)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/EnemCollider2"]
+position = Vector2(-7, 28)
+shape = SubResource("RectangleShape2D_d8u6f")
+
+[node name="TransArea" parent="." instance=ExtResource("3_0kaxq")]
+position = Vector2(1408, -968)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransArea"]
+visible = false
+position = Vector2(64, -132)
+shape = SubResource("RectangleShape2D_r20mu")
+
+[node name="MazeEnem2" parent="." instance=ExtResource("2_lhndq")]
+position = Vector2(432, -944)
+y_direction = -1
